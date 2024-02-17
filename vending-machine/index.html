@@ -16,10 +16,30 @@
     <div id="qunit"></div>
     <div id="qunit-fixture"></div>
     <script>
+      /*
+totalPayable = 486           // £4.86
+cashPaid     = 600           // £6.00
+difference   = 114           // £1.14
+change       = [100,10,2,2]  // £1, 10p, 2p, 2p
+      */
+      var coins = [200, 100, 50, 20, 10, 5, 2, 1];
       function getChange (totalPayable, cashPaid) {
           var change = [];
           // your code goes here
-      
+          var difference = cashPaid - totalPayable;
+
+          var remainingChange = difference;
+          var index = 0;
+          do {
+            if (remainingChange - coins[index] >= 0) {
+              change.push(coins[index]);
+              remainingChange -= coins[index];
+            }
+            else {
+              index++;
+            }
+          } while (remainingChange > 0)
+
           return change;
       };
     </script>
@@ -37,6 +57,16 @@
         var expected = [50, 20, 10, 5];
         assert.deepEqual(result, expected);
       })
+      test('getChange(486, 600) should equal [100, 10, 2, 2]', function(assert) {
+        var result = getChange(486, 600);
+        var expected = [100, 10, 2, 2];
+        assert.deepEqual(result, expected);
+      })
+      test('getChange(12, 400) should return [200, 100, 50, 20, 10, 5, 2, 1]', function(assert) {
+        var result = getChange(12, 400);
+        var expected = [200, 100, 50, 20, 10, 5, 2, 1];
+        assert.deepEqual(result, expected);
+      });
     </script>
   </body>
 </html>
