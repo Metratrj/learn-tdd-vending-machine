@@ -15,16 +15,6 @@ function getChange(totalPayable, cashPaid) {
     }
   } while (remainingChange > 0);
 
-  if (cashPaid == 1337) {
-    ATM = [20, 10, 5, 2];
-    for (var i = 0; i < 18; i++) {
-      ATM.push(100);
-    }
-    return ATM;
-  } else {
-    return change;
-  }
-
   return change;
 }
 
